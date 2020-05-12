@@ -1,0 +1,118 @@
+function onLoad(save_state)
+  currentTrick = {0,0,0,0}
+  trickCounter = 0
+  trick1 = {0,0,0,0}
+  trick2 = {0,0,0,0}
+  trick3 = {0,0,0,0}
+  trick4 = {0,0,0,0}
+  trick5 = {0,0,0,0}
+end
+
+--[[function printMe()
+  for k,v in pairs(trick1) do
+    print(k ,v)
+end
+end--]]
+
+function onObjectEnterScriptingZone(zone, enter_object)
+  --print(table.concat(currentTrick, ", "))
+  if wColor == 'White' and wCard.tag == 'Card' then
+      table.remove(currentTrick, 1)
+      table.insert(currentTrick, 1, wCard.getGUID())
+    elseif rColor == 'Red' and rCard.tag == 'Card' then
+      table.remove(currentTrick, 2)
+      table.insert(currentTrick, 2, rCard.getGUID())
+    elseif gColor == 'Green' and gCard.tag == 'Card' then
+      table.remove(currentTrick, 3)
+      table.insert(currentTrick, 3, gCard.getGUID())
+    elseif bColor == 'Blue' and bCard.tag == 'Card' then
+      table.remove(currentTrick, 4)
+      table.insert(currentTrick, 4, bCard.getGUID())
+  end
+-- This code sets the OrderCard
+  orderCard = enter_object
+  return orderCard
+end
+
+function onObjectLeaveScriptingZone(zone, leave_object)
+  if leave_object.getGUID() == currentTrick[1] then
+    table.remove(currentTrick, 1)
+    table.insert(currentTrick, 1, 0)
+    elseif leave_object.getGUID() == currentTrick[2] then
+      table.remove(currentTrick, 2)
+      table.insert(currentTrick, 2, 0)
+    elseif leave_object.getGUID() == currentTrick[3] then
+      table.remove(currentTrick, 3)
+      table.insert(currentTrick, 3, 0)
+    elseif leave_object.getGUID() == currentTrick[4] then
+      table.remove(currentTrick, 4)
+      table.insert(currentTrick, 4, 0)
+  end
+end
+
+function onObjectPickUp(pColor, object)
+  if pColor == 'White' and object.tag == 'Card' then
+    wCard = object
+    wColor = pColor
+  elseif pColor == 'Red' and object.tag == 'Card' then
+    rCard = object
+    rColor = pColor
+  elseif pColor == 'Green' and object.tag == 'Card' then
+    gCard = object
+    gColor = pColor
+  elseif pColor == 'Blue' and object.tag == 'Card' then
+    bCard = object
+    bColor = pColor
+  end
+end
+
+function onObjectDrop(pColor, object)
+  if pColor == 'White' and object.tag == 'Card' then
+    wCard = nil
+    wColor = nil
+  elseif pColor == 'Red' and object.tag == 'Card' then
+    rCard = nil
+    rColor = nil
+  elseif pColor == 'Green' and object.tag == 'Card' then
+    gCard = nil
+    gColor = nil
+  elseif pColor == 'Blue' and object.tag == 'Card' then
+    bCard = nil
+    bColor = nil
+  end
+end
+
+function saveTrick1()
+  trick1 = currentTrick
+  currnetTrick ={0,0,0,0}
+end
+function saveTrick2()
+  trick2 = currentTrick
+  currnetTrick ={0,0,0,0}
+end
+function saveTrick3()
+  trick3 = currentTrick
+  currnetTrick ={0,0,0,0}
+end
+function saveTrick4()
+  trick4 = currentTrick
+  currnetTrick ={0,0,0,0}
+end
+function saveTrick5()
+  trick5 = currentTrick
+  currnetTrick ={0,0,0,0}
+end
+function trickCounterAdd()
+  trickCounter = trickCounter +1
+  return trickCounter
+end
+
+function orderInfo()
+  return orderCard
+end
+
+-- Called from Gather Buttons
+function trickReset()
+  trickCounter = 0
+  return trickCounter
+end

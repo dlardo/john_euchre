@@ -1,0 +1,101 @@
+function onLoad(save_state)
+  passButton = getObjectFromGUID('00c3ff')
+  orderButton = getObjectFromGUID('1703ae')
+  myorderButton = getObjectFromGUID('e6a49c')
+  passCount = getObjectFromGUID('27e69f')
+  orderClubs = getObjectFromGUID('7c2109')
+  orderDiamonds = getObjectFromGUID('b5d489')
+  orderHearts = getObjectFromGUID('865359')
+  orderSpades = getObjectFromGUID('e373f3')
+
+  self.createButton({
+    click_function = "dealCards",
+    function_owner = self,
+    width          = 3300,
+    height         = 1000,
+    position       = {x=0,y=0.1,z=0},
+    color          = {r=0,g=0,b=0,a=0}
+    })
+end
+
+  function dealCards()
+    count = passCount.call('passCounterPlus')
+      if count < 4 then
+          self.setPosition({3.63, 0, 13.66})
+          passButton.setPosition({13.67, 1.40, -3.47})
+          orderButton.setPosition({12.49, 1.40, -3.47})
+          myorderButton.setPosition({3.63, 0, 12.48})
+          broadcastToAll("Green Passes", {r=0, g=1, b=0})
+      elseif count < 7 then
+        self.setPosition({3.63, 0, 13.66})
+        passButton.setPosition({13.67, 1.40, -3.47})
+        myorderButton.setPosition({3.63, 0, 12.48})
+        broadcastToAll("Green Passes", {r=0, g=1, b=0})
+      elseif count >= 7 then
+        self.setPosition({3.63, 0, 13.66})
+        passButton.setPosition({13.67, 0, -3.47})
+        myorderButton.setPosition({3.63, 0, 12.48})
+        broadcastToAll("Green Passes", {r=0, g=1, b=0})
+      end
+
+      orderCard = Global.Call('orderInfo')
+      print(orderCard.getName())
+
+        if orderCard.getName() == 'Clubs' and count < 4 then
+          orderClubs.setPosition({12.46, 1.38, -5.87})
+          orderClubs.setRotation({0.00, 90.00, 0.00})
+
+        else if orderCard.getName() == 'Clubs' and count >= 4 then
+          orderClubs.setPosition({12.46, 0, -5.87})
+          orderClubs.setRotation({0.00, 90.00, 0.00})
+          orderDiamonds.setPosition({12.46, 1.38, -2.25})
+          orderDiamonds.setRotation({0.00, 90.00, 0.00})
+          orderHearts.setPosition({12.46, 1.38, -3.48})
+          orderHearts.setRotation({0.00, 90.00, 0.00})
+          orderSpades.setPosition({12.46, 1.38, -4.78})
+          orderSpades.setRotation({0.00, 90.00, 0.00})
+        end
+
+        if orderCard.getName() == 'Diamonds' and count < 4 then
+          orderDiamonds.setPosition({12.46, 1.38, -5.87})
+          orderDiamonds.setRotation({0.00, 90.00, 0.00})
+        elseif orderCard.getName() == 'Diamonds' and count >= 4 then
+          orderClubs.setPosition({12.46, 1.38, -2.25})
+          orderClubs.setRotation({0.00, 90.00, 0.00})
+          orderDiamonds.setPosition({12.46, 0, -5.87})
+          orderDiamonds.setRotation({0.00, 90.00, 0.00})
+          orderHearts.setPosition({12.46, 1.38, -3.48})
+          orderHearts.setRotation({0.00, 90.00, 0.00})
+          orderSpades.setPosition({12.46, 1.38, -4.78})
+          orderSpades.setRotation({0.00, 90.00, 0.00})
+        end
+
+        if orderCard.getName() == 'Hearts' and count < 4 then
+          orderHearts.setPosition({12.46, 1.38, -5.87})
+          orderHearts.setRotation({0.00, 90.00, 0.00})
+        elseif orderCard.getName() == 'Hearts' and count >= 4 then
+          orderClubs.setPosition({12.46, 1.38, -3.48})
+          orderClubs.setRotation({0.00, 90.00, 0.00})
+          orderDiamonds.setPosition({12.46, 1.38, -2.25})
+          orderDiamonds.setRotation({0.00, 90.00, 0.00})
+          orderHearts.setPosition({12.46, 0, -5.87})
+          orderHearts.setRotation({0.00, 90.00, 0.00})
+          orderSpades.setPosition({12.46, 1.38, -4.78})
+          orderSpades.setRotation({0.00, 90.00, 0.00})
+        end
+
+        if orderCard.getName() == 'Spades' and count < 4 then
+          orderSpades.setPosition({12.46, 1.38, -5.87})
+          orderSpades.setRotation({0.00, 90.00, 0.00})
+        elseif orderCard.getName() == 'Spades' and count >= 4 then
+          orderClubs.setPosition({12.46, 1.38, -3.48})
+          orderClubs.setRotation({0.00, 90.00, 0.00})
+          orderDiamonds.setPosition({12.46, 1.38, -2.25})
+          orderDiamonds.setRotation({0.00, 90.00, 0.00})
+          orderHearts.setPosition({12.46, 1.38, -4.78})
+          orderHearts.setRotation({0.00, 90.00, 0.00})
+          orderSpades.setPosition({12.46, 0, -5.87})
+          orderSpades.setRotation({0.00, 90.00, 0.00})
+        end
+    end
+end

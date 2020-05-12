@@ -1,0 +1,179 @@
+function onLoad()
+  tableBase = getObjectFromGUID('e33c58')
+  tableClubs = getObjectFromGUID('0e0092')
+  tableDiamonds = getObjectFromGUID('c4603a')
+  tableHearts = getObjectFromGUID('25b9fa')
+  tableSpades = getObjectFromGUID('af5191')
+
+  iconClubsRed = getObjectFromGUID('39941f')
+  iconDiamondsRed = getObjectFromGUID('59deb6')
+  iconHeartsRed = getObjectFromGUID('027160')
+  iconSpadesRed = getObjectFromGUID('1f98a9')
+  greyClubsRed = getObjectFromGUID('df95f1')
+  greyDiamondsRed = getObjectFromGUID('8f75b8')
+  greyHeartsRed = getObjectFromGUID('e0f22b')
+  greySpadesRed = getObjectFromGUID('314e1d')
+
+  iconClubsWhite = getObjectFromGUID('c5aed8')
+  iconDiamondsWhite = getObjectFromGUID('2dd0b5')
+  iconHeartsWhite = getObjectFromGUID('338100')
+  iconSpadesWhite = getObjectFromGUID('bbee3c')
+  greyClubsWhite = getObjectFromGUID('2f66b1')
+  greyDiamondsWhite = getObjectFromGUID('82caad')
+  greyHeartsWhite = getObjectFromGUID('2792f2')
+  greySpadesWhite = getObjectFromGUID('74cf7a')
+
+  iconClubsGreen = getObjectFromGUID('8d25f2')
+  iconDiamondsGreen = getObjectFromGUID('d6f48c')
+  iconHeartsGreen = getObjectFromGUID('9e2c15')
+  iconSpadesGreen = getObjectFromGUID('c9cfdf')
+  greyClubsGreen = getObjectFromGUID('8d4677')
+  greyDiamondsGreen = getObjectFromGUID('3ff689')
+  greyHeartsGreen = getObjectFromGUID('69c226')
+  greySpadesGreen = getObjectFromGUID('3a5fbf')
+
+  iconClubsBlue = getObjectFromGUID('4a16d9')
+  iconDiamondsBlue = getObjectFromGUID('a31439')
+  iconHeartsBlue = getObjectFromGUID('d3b051')
+  iconSpadesBlue = getObjectFromGUID('2b0d06')
+  greyClubsBlue = getObjectFromGUID('cd35f4')
+  greyDiamondsBlue = getObjectFromGUID('10ec83')
+  greyHeartsBlue = getObjectFromGUID('010971')
+  greySpadesBlue = getObjectFromGUID('46db97')
+
+  orderSpades = getObjectFromGUID('e373f3')
+  orderHearts = getObjectFromGUID('865359')
+  orderClubs = getObjectFromGUID('7c2109')
+  orderDiamonds = getObjectFromGUID('b5d489')
+
+  clearBoardTrump = getObjectFromGUID('674c5e')
+
+  pass1 = getObjectFromGUID('8b0f9f')
+  pass2 = getObjectFromGUID('a9b271')
+  pass3 = getObjectFromGUID('00c3ff')
+  pass4 = getObjectFromGUID('e6e0c0')
+  order1 = getObjectFromGUID('be8f37')
+  order2 = getObjectFromGUID('e6a49c')
+  order3 = getObjectFromGUID('1703ae')
+  order4 = getObjectFromGUID('6e3e9e')
+
+  deal1 = getObjectFromGUID('762073')
+  deal2 = getObjectFromGUID('784b96')
+  deal4 = getObjectFromGUID('f25100')
+  shuf1 = getObjectFromGUID('63d4a4')
+  shuf2 = getObjectFromGUID('ce1e04')
+  shuf4 = getObjectFromGUID('f7ae5f')
+
+  whiteTrick = getObjectFromGUID('6af81b')
+  redTrick = getObjectFromGUID('b4face')
+  greenTrick = getObjectFromGUID('075093')
+  blueTrick = getObjectFromGUID('bace2d')
+
+  tableClubs.setColorTint({1,1,1,0})
+  tableHearts.setColorTint({1,1,1,0})
+  tableDiamonds.setColorTint({1,1,1,0})
+  tableSpades.setColorTint({1,1,1,0})
+  tableBase.setColorTint({1,1,1,100})
+
+  iconClubsRed.setColorTint({1,1,1,0})
+  iconHeartsRed.setColorTint({1,1,1,0})
+  iconDiamondsRed.setColorTint({1,1,1,0})
+  iconSpadesRed.setColorTint({1,1,1,0})
+  greyClubsRed.setColorTint({1,1,1,100})
+  greyHeartsRed.setColorTint({1,1,1,100})
+  greyDiamondsRed.setColorTint({1,1,1,100})
+  greySpadesRed.setColorTint({1,1,1,100})
+
+  iconClubsWhite.setColorTint({1,1,1,0})
+  iconHeartsWhite.setColorTint({1,1,1,0})
+  iconDiamondsWhite.setColorTint({1,1,1,0})
+  iconSpadesWhite.setColorTint({1,1,1,0})
+  greyClubsWhite.setColorTint({1,1,1,100})
+  greyHeartsWhite.setColorTint({1,1,1,100})
+  greyDiamondsWhite.setColorTint({1,1,1,100})
+  greySpadesWhite.setColorTint({1,1,1,100})
+
+  iconClubsGreen.setColorTint({1,1,1,0})
+  iconHeartsGreen.setColorTint({1,1,1,0})
+  iconDiamondsGreen.setColorTint({1,1,1,0})
+  iconSpadesGreen.setColorTint({1,1,1,0})
+  greyClubsGreen.setColorTint({1,1,1,100})
+  greyHeartsGreen.setColorTint({1,1,1,100})
+  greyDiamondsGreen.setColorTint({1,1,1,100})
+  greySpadesGreen.setColorTint({1,1,1,100})
+
+  iconClubsBlue.setColorTint({1,1,1,0})
+  iconHeartsBlue.setColorTint({1,1,1,0})
+  iconDiamondsBlue.setColorTint({1,1,1,0})
+  iconSpadesBlue.setColorTint({1,1,1,0})
+  greyClubsBlue.setColorTint({1,1,1,100})
+  greyHeartsBlue.setColorTint({1,1,1,100})
+  greyDiamondsBlue.setColorTint({1,1,1,100})
+  greySpadesBlue.setColorTint({1,1,1,100})
+
+  shuffleButton = getObjectFromGUID('8da7c2')
+  dealButton = getObjectFromGUID('7c3915')
+  resetCounter = getObjectFromGUID('27e69f')
+  dealerChip = getObjectFromGUID('77225c')
+
+
+  self.createButton({
+    click_function = "clickedGather",
+    function_owner = self,
+    width          = 3400,
+    height         = 1100,
+    position       = {x=0,y=0.1,z=0},
+    color          = {r=0,g=0,b=0,a=0}
+    })
+end
+
+  function clickedGather()
+    local allObjects = getAllObjects()
+    --Loop through allObjects
+    for _, object in ipairs(allObjects) do
+
+        if object.tag == "Card" or object.tag == 'Deck' then
+          object.setPosition({x=13,y=1.9,z=-0})
+          object.setRotation({x=0,y=90,z=180})
+        end
+    end
+    dealerChip.setPosition({15.88, 1.36, -0.03})
+    dealerChip.setRotation({0.12, 89.98, 359.71})
+    shuffleButton.setPosition({13.62, 1.32, 2.89})
+    dealButton.setPosition({12.11, 1.32, 2.89})
+
+    resetCounter.Call('passCounterReset')
+
+    Global.call('trickReset')
+
+    pass1.setPosition({-13.74, 0, 3.51})
+    pass2.setPosition({3.64, 0, 13.63})
+    pass3.setPosition({13.68, 0, -3.49})
+    pass4.setPosition({-3.72, 0, -13.60})
+
+    order1.setPosition({-12.56, 0, 3.51})
+    order2.setPosition({3.64, 0, 12.45})
+    order3.setPosition({12.50, 0, -3.49})
+    order4.setPosition({-3.72, 0, -12.42})
+
+    deal1.setPosition({-12.44, 0, -3.00})
+    deal2.setPosition({-2.32, 0, 11.90})
+    deal4.setPosition({3.04, 0, -12.11})
+
+    shuf1.setPosition({-13.38, 0, -3.00})
+    shuf2.setPosition({-2.31, 0, 12.84})
+    shuf4.setPosition({3.04, 0, -13.05})
+
+    orderSpades.setPosition({-11.61, 0, 5.74})
+    orderHearts.setPosition({-11.61, 0, 4.27})
+    orderClubs.setPosition({-11.61, 0, 2.87})
+    orderDiamonds.setPosition({-11.61, 0, 1.40})
+
+    whiteTrick.Call('whiteTrickReset')
+    redTrick.Call('redTrickReset')
+    greenTrick.Call('greenTrickReset')
+    blueTrick.Call('blueTrickReset')
+
+    clearBoardTrump.call('trump')
+
+  end

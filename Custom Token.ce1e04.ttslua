@@ -1,0 +1,23 @@
+function onLoad(save_state)
+  self.createButton({
+    click_function = 'clicked',
+    function_owner = self,
+    width          = 3400,
+    height         = 1100,
+    position       = {x=0,y=0.1,z=0},
+    color          = {r=0,g=0,b=0,a=0}
+  })
+end
+
+function clicked()
+
+  local allObjects = getAllObjects()
+  --Loop through allObjects
+  for _, object in ipairs(allObjects) do
+
+      if object.tag == 'Deck' then
+          object.shuffle()
+      end
+  end
+
+end

@@ -1,0 +1,68 @@
+function onLoad()
+  tableBase = getObjectFromGUID('e33c58')
+  tableClubs = getObjectFromGUID('0e0092')
+  tableDiamonds = getObjectFromGUID('c4603a')
+  tableHearts = getObjectFromGUID('25b9fa')
+  tableSpades = getObjectFromGUID('af5191')
+
+  orderSpades = getObjectFromGUID('e373f3')
+  orderHearts = getObjectFromGUID('865359')
+  orderClubs = getObjectFromGUID('7c2109')
+  orderDiamonds = getObjectFromGUID('b5d489')
+
+  pass1 = getObjectFromGUID('8b0f9f')
+  pass2 = getObjectFromGUID('a9b271')
+  pass3 = getObjectFromGUID('00c3ff')
+  pass4 = getObjectFromGUID('e6e0c0')
+  order1 = getObjectFromGUID('be8f37')
+  order2 = getObjectFromGUID('e6a49c')
+  order3 = getObjectFromGUID('1703ae')
+  order4 = getObjectFromGUID('6e3e9e')
+
+  sideClubs = getObjectFromGUID('2f66b1')
+
+  self.createButton({
+    click_function = "trump",
+    function_owner = self,
+    width          = 1300,
+    height         = 1300,
+    position       = {x=0,y=0.08,z=0},
+    color          = {r=1, g=1, b=0, a=0},
+    tooltip        = 'Clubs',
+  })
+  end
+
+  function trump(object, player_clicker_color)
+    tableClubs.setColorTint({1,1,1,100})
+    tableHearts.setColorTint({1,1,1,0})
+    tableDiamonds.setColorTint({1,1,1,0})
+    tableSpades.setColorTint({1,1,1,0})
+    tableBase.setColorTint({1,1,1,0})
+
+    orderSpades.setPosition({-11.61, 0, 5.74})
+    orderHearts.setPosition({-11.61, 0, 4.27})
+    orderClubs.setPosition({-11.61, 0, 2.87})
+    orderDiamonds.setPosition({-11.61, 0, 1.40})
+
+    pass1.setPosition({-13.74, 0, 3.51})
+    pass2.setPosition({3.64, 0, 13.63})
+    pass3.setPosition({13.68, 0, -3.49})
+    pass4.setPosition({-3.72, 0, -13.60})
+
+    order1.setPosition({-12.56, 0, 3.51})
+    order2.setPosition({3.64, 0, 12.45})
+    order3.setPosition({12.50, 0, -3.49})
+    order4.setPosition({-3.72, 0, -12.42})
+
+    sideClubs.Call('trump')
+
+    if player_clicker_color == 'White'then
+      broadcastToAll("White Orders CLUBS", {r=1, g=1, b=1})
+    elseif player_clicker_color == 'Red'then
+      broadcastToAll("Red Orders CLUBS", {r=1, g=0, b=0})
+    elseif player_clicker_color == 'Green'then
+      broadcastToAll("Green Orders CLUBS", {r=0, g=1, b=0})
+    elseif player_clicker_color == 'Blue'then
+      broadcastToAll("Blue Orders CLUBS", {r=0, g=0, b=1})
+    end
+  end

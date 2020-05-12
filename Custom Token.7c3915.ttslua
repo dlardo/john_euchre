@@ -1,0 +1,181 @@
+function onLoad(save_state)
+  shuffleButton = getObjectFromGUID('8da7c2')
+  passButton = getObjectFromGUID('e6e0c0')
+  orderButton = getObjectFromGUID('6e3e9e')
+  orderClubs = getObjectFromGUID('7c2109')
+  orderDiamonds = getObjectFromGUID('b5d489')
+  orderHearts = getObjectFromGUID('865359')
+  orderSpades = getObjectFromGUID('e373f3')
+
+  self.createButton({
+    click_function = "dealCards",
+    function_owner = self,
+    width          = 3400,
+    height         = 1100,
+    position       = {x=0,y=0.1,z=0},
+    color          = {r=0,g=0,b=0,a=0}
+    })
+end
+
+function dealCards()
+      Timer.create({
+        identifier     = "timer1",
+        function_name  = "deal3White",
+        delay          = 0.2,
+        repetitions    = 1,
+      })
+      Timer.create({
+        identifier     = "timer2",
+        function_name  = "deal2Red",
+        delay          = 0.5,
+        repetitions    = 1,
+      })
+      Timer.create({
+        identifier     = "timer3",
+        function_name  = "deal3Green",
+        delay          = 0.8,
+        repetitions    = 1,
+      })
+      Timer.create({
+        identifier     = "timer4",
+        function_name  = "deal2Blue",
+        delay          = 1.1,
+        repetitions    = 1,
+      })
+      Timer.create({
+        identifier     = "timer5",
+        function_name  = "deal2White",
+        delay          = 1.4,
+        repetitions    = 1,
+      })
+      Timer.create({
+        identifier     = "timer6",
+        function_name  = "deal3Red",
+        delay          = 1.7,
+        repetitions    = 1,
+      })
+      Timer.create({
+        identifier     = "timer7",
+        function_name  = "deal2Green",
+        delay          = 2.0,
+        repetitions    = 1,
+      })
+      Timer.create({
+        identifier     = "timer8",
+        function_name  = "deal3Blue",
+        delay          = 2.3,
+        repetitions    = 1,
+      })
+      Timer.create({
+        identifier     = "timer9",
+        function_name  = "dealSetup",
+        delay          = 3.2,
+        repetitions    = 1,
+      })
+      Timer.create({
+        identifier     = "timer10",
+        function_name  = "getOrderInfo",
+        delay          = 4,
+        repetitions    = 1,
+      })
+
+      shuffleButton.setPosition({-0.01, 0, -13.00})
+      self.setPosition({3.02, 0, -12.06})
+  end
+
+-- Deal cards to players
+    function deal3Red()
+      allObjects = getAllObjects()
+        for _, object in ipairs(allObjects) do
+          if object.tag == 'Deck' then
+            object.deal(3, 'Red')
+          end
+        end
+    end
+    function deal2Green()
+      allObjects = getAllObjects()
+        for _, object in ipairs(allObjects) do
+          if object.tag == 'Deck' then
+            object.deal(2, 'Green')
+          end
+        end
+    end
+    function deal3Blue()
+      allObjects = getAllObjects()
+        for _, object in ipairs(allObjects) do
+          if object.tag == 'Deck' then
+            object.deal(3, 'Blue')
+          end
+        end
+    end
+    function deal2White()
+      allObjects = getAllObjects()
+        for _, object in ipairs(allObjects) do
+          if object.tag == 'Deck' then
+            object.deal(2, 'White')
+          end
+        end
+    end
+--second set of cards to players
+    function deal2Red()
+      allObjects = getAllObjects()
+        for _, object in ipairs(allObjects) do
+          if object.tag == 'Deck' then
+            object.deal(2, 'Red')
+          end
+        end
+    end
+    function deal3Green()
+      allObjects = getAllObjects()
+        for _, object in ipairs(allObjects) do
+          if object.tag == 'Deck' then
+            object.deal(3, 'Green')
+          end
+        end
+    end
+    function deal2Blue()
+      allObjects = getAllObjects()
+        for _, object in ipairs(allObjects) do
+          if object.tag == 'Deck' then
+            object.deal(2, 'Blue')
+          end
+        end
+    end
+    function deal3White()
+      allObjects = getAllObjects()
+        for _, object in ipairs(allObjects) do
+          if object.tag == 'Deck' then
+            object.deal(3, 'White')
+          end
+        end
+    end
+
+--This sets up the turn over card.
+    function dealSetup()
+      allObjects = getAllObjects()
+        for _, object in ipairs(allObjects) do
+          if object.tag == 'Deck' then
+            object.dealToColorWithOffset({1,0.1,6}, true, 'Blue')
+          end
+        end
+    end
+
+-- Gathers turned up card info, sets order/pass buttons.
+        function getOrderInfo()
+          orderCard = Global.Call('orderInfo')
+            if orderCard.getName() == 'Clubs' then
+              orderClubs.setPosition({-6.07, 1.45, -12.40})
+              orderClubs.setRotation({0.00, 180.00, 0.00})
+            elseif orderCard.getName() == 'Diamonds' then
+              orderDiamonds.setPosition({-6.07, 1.45, -12.40})
+              orderDiamonds.setRotation({0.00, 180.00, 0.00})
+            elseif orderCard.getName() == 'Hearts' then
+              orderHearts.setPosition({-6.07, 1.45, -12.40})
+              orderHearts.setRotation({0.00, 180.00, 0.00})
+            elseif orderCard.getName() == 'Spades' then
+              orderSpades.setPosition({-6.07, 1.45, -12.40})
+              orderSpades.setRotation({0.00, 180.00, 0.00})
+            end
+          passButton.setPosition({-3.72, 1.49, -13.59})
+          orderButton.setPosition({-3.72, 1.49, -12.41})
+        end

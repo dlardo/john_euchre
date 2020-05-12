@@ -1,0 +1,83 @@
+function onLoad(save_state)
+  passButton = getObjectFromGUID('8b0f9f')
+  orderButton = getObjectFromGUID('be8f37')
+  mypassButton = getObjectFromGUID('e6e0c0')
+  resetCounter = getObjectFromGUID('27e69f')
+
+  orderSpades = getObjectFromGUID('e373f3')
+  orderHearts = getObjectFromGUID('865359')
+  orderClubs = getObjectFromGUID('7c2109')
+  orderDiamonds = getObjectFromGUID('b5d489')
+
+  tableBase = getObjectFromGUID('e33c58')
+  tableClubs = getObjectFromGUID('0e0092')
+  tableDiamonds = getObjectFromGUID('c4603a')
+  tableHearts = getObjectFromGUID('25b9fa')
+  tableSpades = getObjectFromGUID('af5191')
+
+  sideClubs = getObjectFromGUID('2f66b1')
+  sideDiamonds = getObjectFromGUID('82caad')
+  sideHearts = getObjectFromGUID('2792f2')
+  sideSpades = getObjectFromGUID('74cf7a')
+
+  self.createButton({
+    click_function = "dealCards",
+    function_owner = self,
+    width          = 3300,
+    height         = 1000,
+    position       = {x=0,y=0.1,z=0},
+    color          = {r=0,g=0,b=0,a=0}
+    })
+end
+
+  function dealCards()
+      orderSpades.setPosition({-6.83, 0, -11.59})
+      orderHearts.setPosition({-5.36, 0, -11.65})
+      orderClubs.setPosition({-3.96, 0, -11.71})
+      orderDiamonds.setPosition({-2.49, 0, -11.76})
+      orderSpades.setRotation({x=0, y=180, z=0})
+      orderHearts.setRotation({x=0, y=180, z=0})
+      orderClubs.setRotation({x=0, y=180, z=0})
+      orderDiamonds.setRotation({x=0, y=180, z=0})
+      self.setPosition({-3.73, 0, -12.39})
+      passButton.setPosition({-13.74, 0, 3.52})
+      orderButton.setPosition({-12.56, 0, 3.52})
+      mypassButton.setPosition({-3.73, 0, -13.57})
+      resetCounter.Call('passCounterReset')
+
+      orderCard = Global.Call('orderInfo')
+
+      if orderCard.getName() == 'Clubs' then
+        tableClubs.setColorTint({1,1,1,100})
+        tableHearts.setColorTint({1,1,1,0})
+        tableDiamonds.setColorTint({1,1,1,0})
+        tableSpades.setColorTint({1,1,1,0})
+        tableBase.setColorTint({1,1,1,0})
+        broadcastToAll("White Orders CLUBS", {r=1, g=1, b=1})
+        sideClubs.Call('trump')
+      elseif orderCard.getName() == 'Diamonds' then
+        tableClubs.setColorTint({1,1,1,0})
+        tableHearts.setColorTint({1,1,1,0})
+        tableDiamonds.setColorTint({1,1,1,100})
+        tableSpades.setColorTint({1,1,1,0})
+        tableBase.setColorTint({1,1,1,0})
+        broadcastToAll("White Orders DIAMONDS", {r=1, g=1, b=1})
+        sideDiamonds.Call('trump')
+      elseif orderCard.getName() == 'Hearts' then
+        tableClubs.setColorTint({1,1,1,0})
+        tableHearts.setColorTint({1,1,1,100})
+        tableDiamonds.setColorTint({1,1,1,0})
+        tableSpades.setColorTint({1,1,1,0})
+        tableBase.setColorTint({1,1,1,0})
+        broadcastToAll("White Orders HEARTS", {r=1, g=1, b=1})
+        sideHearts.Call('trump')
+      elseif orderCard.getName() == 'Spades' then
+        tableClubs.setColorTint({1,1,1,0})
+        tableHearts.setColorTint({1,1,1,0})
+        tableDiamonds.setColorTint({1,1,1,0})
+        tableSpades.setColorTint({1,1,1,100})
+        tableBase.setColorTint({1,1,1,0})
+        broadcastToAll("White Orders SPADES", {r=1, g=1, b=1})
+        sideSpades.Call('trump')
+      end
+    end

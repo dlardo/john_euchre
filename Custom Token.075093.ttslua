@@ -1,0 +1,84 @@
+function onLoad()
+  greenTrick = 1
+  trickCounter = 0
+  cardZone = getObjectFromGUID('5d20ba')
+  self.createButton({
+    click_function = "gatherCards",
+    function_owner = self,
+    width          = 3400,
+    height         = 1100,
+    position       = {x=0,y=0.1,z=0},
+    color          = {r=0,g=0,b=0,a=0}
+  })
+end
+
+function greenTrickAdd()
+  greenTrick = greenTrick +1
+    return greenTrick
+  end
+
+  function greenTrickReset()
+    greenTrick = 1
+  end
+
+function gatherCards()
+  self.Call('greenTrickAdd')
+  trickCounter = Global.call('trickCounterAdd')
+  cards = cardZone.getObjects()
+      if trickCounter == 1 then
+        Global.call('saveTrick1')
+
+      elseif trickCounter == 2 then
+        Global.call('saveTrick2')
+
+      elseif trickCounter == 3 then
+        Global.call('saveTrick3')
+
+      elseif trickCounter == 4 then
+        Global.call('saveTrick4')
+
+      elseif trickCounter >= 5 then
+        Global.call('saveTrick5')
+      end
+
+      if greenTrick == 1 then
+          for _, object in ipairs(cards) do
+            if object.tag == 'Card' then
+              object.setPosition({x= -11.11, y= 1.51, z= 12.98})
+              object.setRotation({x=0,y=0,z=180})
+            end
+          end
+
+      elseif greenTrick == 2 then
+          for _, object in ipairs(cards) do
+            if object.tag == 'Card' then
+              object.setPosition({x= -9.60, y= 1.63, z= 12.47})
+              object.setRotation({x=0,y=0,z=180})
+            end
+          end
+
+      elseif greenTrick == 3 then
+          for _, object in ipairs(cards) do
+            if object.tag == 'Card' then
+              object.setPosition({x= -8.11, y= 1.63, z= 12.97})
+              object.setRotation({x=0,y=0,z=180})
+            end
+          end
+
+      elseif greenTrick == 4 then
+          for _, object in ipairs(cards) do
+            if object.tag == 'Card' then
+              object.setPosition({x= -6.60, y= 1.63, z= 12.47})
+              object.setRotation({x=0,y=00,z=180})
+            end
+          end
+
+      elseif greenTrick >= 5 then
+          for _, object in ipairs(cards) do
+            if object.tag == 'Card' then
+              object.setPosition({x= -5.11, y= 1.72, z= 12.97})
+              object.setRotation({x=0,y=0,z=180})
+            end
+          end
+      end
+  end

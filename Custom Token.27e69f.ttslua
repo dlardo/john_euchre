@@ -1,0 +1,10 @@
+passCounter = 0
+
+function passCounterPlus()
+  passCounter = passCounter +1
+  return passCounter
+end
+
+function passCounterReset()
+  passCounter = 0
+end

@@ -1,0 +1,86 @@
+function onLoad(save_state)
+  orderSpades = getObjectFromGUID('e373f3')
+  orderHearts = getObjectFromGUID('865359')
+  orderClubs = getObjectFromGUID('7c2109')
+  orderDiamonds = getObjectFromGUID('b5d489')
+
+  clearBoardTrump = getObjectFromGUID('674c5e')
+
+  pass1 = getObjectFromGUID('8b0f9f')
+  pass2 = getObjectFromGUID('a9b271')
+  pass3 = getObjectFromGUID('00c3ff')
+  pass4 = getObjectFromGUID('e6e0c0')
+  order1 = getObjectFromGUID('be8f37')
+  order2 = getObjectFromGUID('e6a49c')
+  order3 = getObjectFromGUID('1703ae')
+  order4 = getObjectFromGUID('6e3e9e')
+
+  deal1 = getObjectFromGUID('762073')
+  deal2 = getObjectFromGUID('784b96')
+  deal3 = getObjectFromGUID('7c3915')
+  deal4 = getObjectFromGUID('f25100')
+  shuf1 = getObjectFromGUID('63d4a4')
+  shuf2 = getObjectFromGUID('ce1e04')
+  shuf3 = getObjectFromGUID('8da7c2')
+  shuf4 = getObjectFromGUID('f7ae5f')
+
+  whiteTrick = getObjectFromGUID('6af81b')
+  redTrick = getObjectFromGUID('b4face')
+  greenTrick = getObjectFromGUID('075093')
+  blueTrick = getObjectFromGUID('bace2d')
+
+  self.createButton({
+    click_function = 'restTable',
+    function_owner = self,
+    position       = {x=0, y=0.1, z=0},
+    rotation       = {x=0, y=0, z=0},
+    color          = {r=0,g=0,b=0,a=0},
+    width          = 1500,
+    height         = 1500,
+    tooltip        = "The will only reset the deck and any dynamic buttons that are currently active.",
+  })
+end
+
+function restTable()
+    local allObjects = getAllObjects()
+    --Loop through allObjects
+    for _, object in ipairs(allObjects) do
+
+        if object.tag == "Card" or object.tag == 'Deck' then
+          object.setPosition({0.05, 2, -1.07})
+          object.setRotation({x=0,y=0,z=180})
+        end
+    end
+    pass1.setPosition({-13.74, 0, 3.51})
+    pass2.setPosition({3.64, 0, 13.63})
+    pass3.setPosition({13.68, 0, -3.49})
+    pass4.setPosition({-3.72, 0, -13.60})
+
+    order1.setPosition({-12.56, 0, 3.51})
+    order2.setPosition({3.64, 0, 12.45})
+    order3.setPosition({12.50, 0, -3.49})
+    order4.setPosition({-3.72, 0, -12.42})
+
+    deal1.setPosition({-12.44, 0, -3.00})
+    deal2.setPosition({-2.32, 0, 11.90})
+    deal3.setPosition({11.24, 0, 2.69})
+    deal4.setPosition({3.04, 0, -12.11})
+
+    shuf1.setPosition({-13.38, 0, -3.00})
+    shuf2.setPosition({-2.31, 0, 12.84})
+    shuf3.setPosition({12.18, 0, 2.69})
+    shuf4.setPosition({3.04, 0, -13.05})
+
+    orderSpades.setPosition({-11.61, 0, 5.74})
+    orderHearts.setPosition({-11.61, 0, 4.27})
+    orderClubs.setPosition({-11.61, 0, 2.87})
+    orderDiamonds.setPosition({-11.61, 0, 1.40})
+
+    whiteTrick.Call('whiteTrickReset')
+    redTrick.Call('redTrickReset')
+    greenTrick.Call('greenTrickReset')
+    blueTrick.Call('blueTrickReset')
+
+    clearBoardTrump.call('trump')
+
+end
